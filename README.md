@@ -4,7 +4,7 @@
 ## Stacks
 - Next.js
 - TypeScript
-- Sass (.scss)
+- Theme UI
 - xstate
 - atomic design
 - React Query
