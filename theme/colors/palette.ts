@@ -1,6 +1,6 @@
 // www.untitledui.com
 
-import { getTransparentColors } from "./getTransparentColors";
+import {getTransparentColors} from "./getTransparentColors";
 
 export const defaultPalette = {
   "white": "#FFFFFF",
@@ -152,21 +152,21 @@ export const defaultPalette = {
 
 export const transparentPalette = {
   ...[
-    { name: "white", hex: "#FFFFFF" },
-    { name: "black", hex: "#000000" },
-    { name: "gray-500", hex: "#667085" },
-    { name: "scarlet-500", hex: "#F04438" },
-    { name: "yellow-500", hex: "#F79009" },
-    { name: "green-500", hex: "#12B76A" },
-    { name: "blue-gray-500", hex: "#4E5BA6" },
-    { name: "light-blue-500", hex: "#0BA5EC" },
-    { name: "blue-500", hex: "#2E90FA" },
-    { name: "indigo-500", hex: "#6172F3" },
-    { name: "purple-500", hex: "#7A5AF8" },
-    { name: "pink-500", hex: "#EE46BC" },
-    { name: "rose-500", hex: "#F63D68" },
-    { name: "orange-500", hex: "#FB6514" },
-  ].reduce((acc, cur) => ({ ...acc, ...getTransparentColors(cur) }), {} as Record<string, string>),
+    {name: "white", hex: "#FFFFFF"},
+    {name: "black", hex: "#000000"},
+    {name: "gray-500", hex: "#667085"},
+    {name: "scarlet-500", hex: "#F04438"},
+    {name: "yellow-500", hex: "#F79009"},
+    {name: "green-500", hex: "#12B76A"},
+    {name: "blue-gray-500", hex: "#4E5BA6"},
+    {name: "light-blue-500", hex: "#0BA5EC"},
+    {name: "blue-500", hex: "#2E90FA"},
+    {name: "indigo-500", hex: "#6172F3"},
+    {name: "purple-500", hex: "#7A5AF8"},
+    {name: "pink-500", hex: "#EE46BC"},
+    {name: "rose-500", hex: "#F63D68"},
+    {name: "orange-500", hex: "#FB6514"},
+  ].reduce((acc, cur) => ({...acc, ...getTransparentColors(cur)}), {} as Record<string, string>),
 } as TransparentPalette;
 
 type TransparentPalette = Record<

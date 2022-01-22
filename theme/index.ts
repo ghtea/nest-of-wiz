@@ -6,14 +6,14 @@ export type {Sx as Sx};
 // https://theme-ui.com/theme-spec
 export const theme = {
   breakpoints: [
-                //       0 <= screen < 600px  | sm
+    //       0 <= screen < 600px  | sm
     "37.5rem",  //   600px <= screen < 960px  | md
     "60rem",    //   960px <= screen < 1440px | lg
     "90rem",    //  1440px <= screen          | xl
   ],
   background: {},
   config: {
-    initialColorModeName: 'light',
+    initialColorModeName: "light",
   },
   colors: {
     ...lightModeColors,

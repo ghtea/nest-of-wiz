@@ -1,4 +1,4 @@
-import { colord } from "colord";
+import {colord} from "colord";
 
 type getTransparentColorsConfig = {
   name: string;
@@ -7,7 +7,7 @@ type getTransparentColorsConfig = {
 };
 
 export const getTransparentColors = (config: getTransparentColorsConfig) => {
-  const { name, hex, unit = 0.08 } = config;
+  const {name, hex, unit = 0.08} = config;
 
   const transparentColors: Record<string, string> = {};
 
