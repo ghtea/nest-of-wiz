@@ -1,4 +1,4 @@
-import "theme/reset.css"
+import "theme/style.css"
 import type {AppProps} from "next/app"
 import {ThemeProvider} from "theme-ui"
 import theme from "theme"
