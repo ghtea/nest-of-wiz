@@ -1,5 +1,6 @@
 module.exports = {
-  "extends": ["next", "next/core-web-vitals"],
+  "extends": ["next", "next/core-web-vitals", "plugin:tailwindcss/recommended"],
+  "plugins": ["tailwindcss"],
   "rules": {
     "indent": ["error", 2],
     "quotes": ["error", "double"],

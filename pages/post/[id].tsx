@@ -2,30 +2,28 @@
 
 import type {GetServerSideProps, NextPage} from "next"
 import {NotionAPI} from "notion-client"
+import {ExtendedRecordMap} from "notion-types"
+import {useEffect} from "react"
 import {NotionRenderer} from "react-notion-x"
-import {notion} from "utils/notion"
-// core styles shared by all of react-notion-x (required)
-import "react-notion-x/src/styles.css"
-
-// used for code syntax highlighting (optional)
-import "prismjs/themes/prism-tomorrow.css"
-
-// used for collection views (optional)
-import "rc-dropdown/assets/index.css"
-
-// used for rendering equations (optional)
-import "katex/dist/katex.min.css"
 
 type PostProps = {
-  recordMap: any
+  recordMap: ExtendedRecordMap
 }
 
+const notion = new NotionAPI()
+
 const Post: NextPage<PostProps> = ({
-  recordMap
+  recordMap,
 }) => {
+  useEffect(()=>{
+    console.log("recordMap: ", recordMap); // TODO: remove 
+  },[recordMap])
+  
   return (
-    <div>
-      <NotionRenderer recordMap={recordMap} />
+    <div className={"flex flex-col items-center w-full bg-slate-50"}>
+      <div className={"flex flex-col items-center w-full max-w-4xl bg-white md:w-10/12"}>
+        <NotionRenderer recordMap={recordMap} />
+      </div>
     </div>
   )
 }
@@ -38,23 +36,13 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     }})
   }
 
-  // const response = await notion.pages.retrieve({
-  //   page_id: pageId
-  // })
-
-  // const response = await notion.blocks.children.list({
-  //   block_id: pageId,
-  //   page_size: 50,
-  // });
-
-  const notionClient = new NotionAPI()
-  
   try {
-    const response = await notionClient.getPage(pageId)
-    console.log("response: ", response); // TODO: remove
+
+    const recordMap = await notion.getPage(pageId)
+
     return ({
       props: {
-        recordMap: response
+        recordMap: recordMap
       }
     })
   }

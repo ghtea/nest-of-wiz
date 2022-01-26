@@ -1,0 +1,29 @@
+.notion {
+  @apply px-4 py-4;
+  * {
+    @apply my-0.5;
+  }
+}
+
+// heading
+.notion-h {
+  @apply font-bold;
+
+  svg {
+    @apply hidden;
+  }
+}
+.notion-h1 {
+  @apply text-4xl my-4;
+}
+.notion-h2 {
+  @apply text-2xl my-3;
+}
+.notion-h3 {
+  @apply text-lg my-2;
+}
+
+// list
+.notion-list-disc {
+  @apply ml-3;
+}
