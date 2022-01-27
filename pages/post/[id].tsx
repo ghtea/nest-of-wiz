@@ -4,7 +4,10 @@ import type {GetServerSideProps, NextPage} from "next"
 import {NotionAPI} from "notion-client"
 import {ExtendedRecordMap} from "notion-types"
 import {useEffect} from "react"
-import {NotionRenderer} from "react-notion-x"
+import {Code, NotionRenderer} from "react-notion-x"
+import {Box} from "components/atoms/Box"
+import {Flex} from "components/atoms/Flex"
+import {TemplateBasic} from "components/templates/TemplateBasic"
 
 type PostProps = {
   recordMap: ExtendedRecordMap
@@ -20,11 +23,21 @@ const Post: NextPage<PostProps> = ({
   },[recordMap])
   
   return (
-    <div className={"flex flex-col items-center w-full bg-slate-50"}>
-      <div className={"flex flex-col items-center w-full max-w-4xl bg-white md:w-10/12"}>
-        <NotionRenderer recordMap={recordMap} />
-      </div>
-    </div>
+    <TemplateBasic>
+      <Flex>
+        <Box className={"my-4 w-full max-w-4xl bg-white rounded-md border border-gray-100 border-solid md:w-10/12"}>
+          <NotionRenderer 
+            pageHeader
+            fullPage={true}
+            recordMap={recordMap}
+            components={{
+              code: Code,
+            }}
+          />
+        </Box>
+      </Flex>
+      
+    </TemplateBasic>
   )
 }
 
