@@ -1,10 +1,10 @@
 # Nest of wiz
-- blog of wiz
+- blog using Notion 
 
 ## Stacks
 - Next.js
 - TypeScript
-- Sass (.scss)
+- TailwindCss
 - xstate
 - atomic design
 - React Query
