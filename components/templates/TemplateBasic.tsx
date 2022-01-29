@@ -1,7 +1,5 @@
 import React from "react"
-import {Flex} from "components/atoms/Flex"
-import {Link} from "components/atoms/Link"
-import {Text} from "components/atoms/Text"
+import {Flex, Text,Link} from "components/atoms"
 
 export type TemplateBasicProps = {}
 

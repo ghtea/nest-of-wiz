@@ -1,19 +1,20 @@
 import clsx from "clsx";
-import React, {memo, useMemo} from "react"
+import React, {forwardRef, memo, useMemo} from "react"
 import {twMerge} from "tailwind-merge"
-export type FlexProps = React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement> & {}
 
-export const Flex: React.FunctionComponent<FlexProps> = memo(({
+export type FlexProps = Omit<React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>, "ref"> & {}
+
+export const Flex: React.FunctionComponent<FlexProps> = memo(forwardRef<HTMLDivElement, FlexProps>(({
   ...rest
-}) => {
+}, ref) => {
   const className = useMemo(()=>twMerge(
     clsx("flex flex-col justify-start items-center w-full"), rest.className
   ),[rest.className])
 
   return (
-    <div {...rest} className={className}/>
+    <div ref={ref} {...rest} className={className}/>
   )
-})
+}))
 
 Flex.displayName = "Flex";
 

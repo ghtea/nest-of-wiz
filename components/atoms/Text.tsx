@@ -1,15 +1,15 @@
 import clsx from "clsx";
-import React, {memo, useMemo} from "react"
+import React, {forwardRef, memo, useMemo} from "react"
 import {twMerge} from "tailwind-merge"
 
-export type TextProps = React.DetailedHTMLProps<React.HTMLAttributes<HTMLSpanElement>, HTMLSpanElement> & {
+export type TextProps = Omit<React.DetailedHTMLProps<React.HTMLAttributes<HTMLSpanElement>, HTMLSpanElement>, "ref"> & {
   appearance?: "default" | "hint" | "disabled"
 }
 
-export const Text: React.FunctionComponent<TextProps> = memo(({
+export const Text: React.FunctionComponent<TextProps> = memo(forwardRef<HTMLSpanElement, TextProps>(({
   appearance = "default",
   ...rest
-}) => {
+}, ref) => {
   const appearanceClassName = useMemo(()=>{
     if (appearance === "hint"){
       return clsx("text-gray-700")
@@ -26,8 +26,8 @@ export const Text: React.FunctionComponent<TextProps> = memo(({
   ),[rest.className, appearanceClassName])
 
   return (
-    <span {...rest} className={className}/>
+    <span ref={ref} {...rest} className={className}/>
   )
-})
+}))
 
 Text.displayName = "Text";

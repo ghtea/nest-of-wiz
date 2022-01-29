@@ -1,10 +1,5 @@
 import {NextApiRequest, NextApiResponse} from "next";
 import {notion} from "utils/notion";
-import * as notionTypes from "notion-types"
-// import {NotionAPI} from "notion-client"
-
-// const api = new NotionAPI()
-// api.getCollectionData({})
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   try {
@@ -16,5 +11,3 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     res.status(400)
   }
 }
-
-type dd =notionTypes.

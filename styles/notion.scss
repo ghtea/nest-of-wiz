@@ -20,6 +20,28 @@
   @apply items-start w-full;
 }
 
+// collection-row (meta of page)
+.notion-collection-row-property {
+  @apply flex flex-row items-center;
+}
+
+.notion-collection-column-title {
+  @apply w-20;
+  svg {
+    @apply hidden;
+  }
+}
+
+.notion-collection-column-title-body {
+  @apply text-gray-600;
+}
+
+.notion-property-multi_select-item {
+  &:nth-of-type(n+2) {
+    @apply ml-2;
+  }
+}
+
 // heading
 .notion-h {
   @apply font-bold;
