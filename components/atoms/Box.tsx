@@ -1,8 +1,10 @@
 import clsx from "clsx";
-import React, {forwardRef, memo, useMemo} from "react"
+import React, {forwardRef, memo, Ref, RefObject, useMemo} from "react"
 import {twMerge} from "tailwind-merge"
 
-export type BoxProps = Omit<React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>, "ref"> & {}
+export type BoxProps = Omit<React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>, "ref"> & {
+  ref?: Ref<HTMLDivElement>
+}
 
 export const Box: React.FunctionComponent<BoxProps> = memo(forwardRef<HTMLDivElement, BoxProps>(({
   ...rest

@@ -1,8 +1,10 @@
 import clsx from "clsx";
-import React, {forwardRef, memo, useMemo} from "react"
+import React, {forwardRef, memo, Ref, useMemo} from "react"
 import {twMerge} from "tailwind-merge"
 
-export type FlexProps = Omit<React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>, "ref"> & {}
+export type FlexProps = Omit<React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>, "ref"> & {
+  ref?: Ref<HTMLDivElement>
+}
 
 export const Flex: React.FunctionComponent<FlexProps> = memo(forwardRef<HTMLDivElement, FlexProps>(({
   ...rest

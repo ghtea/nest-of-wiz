@@ -1,5 +1,6 @@
 import type {NextPage, GetStaticProps, GetStaticPaths} from "next"
 import Head from "next/head"
+import {useRouter} from "next/router"
 import {ExtendedRecordMap} from "notion-types"
 import {getPageTitle, getAllPagesInSpace} from "notion-utils"
 
@@ -7,17 +8,25 @@ import {useMemo} from "react"
 import {Code, CollectionRow, NotionRenderer} from "react-notion-x"
 import {Box, Flex, NotionImage} from "components/atoms"
 import {NotionCollectionRow} from "components/molecules/NotionColloectionRow"
+import {UtterancesCommentList} from "components/organisms/UtterancesCommentList"
 import {TemplateBasic} from "components/templates/TemplateBasic"
 import {isDev} from "utils/environment"
 import {notionXClient} from "utils/notion-x"
 
-type PostPageProps = {
+type NotePageProps = {
   recordMap?: ExtendedRecordMap
 }
 
-const PostPage: NextPage<PostPageProps> = ({
+const NotePage: NextPage<NotePageProps> = ({
   recordMap
 }) => {
+  const router = useRouter()
+
+  const pageId = useMemo(()=>{
+    const rawPageId = router.query.id
+    return typeof rawPageId === "string" ? rawPageId : ""
+  }, [router.query.id])
+
   const pageTitle = useMemo(()=>{
     return recordMap ? getPageTitle(recordMap) : "Not Found"
   },[recordMap])
@@ -25,11 +34,11 @@ const PostPage: NextPage<PostPageProps> = ({
   return (
     <>
       <Head>
-        <title>{pageTitle}</title>
+        <title>{pageTitle}</title> 
       </Head>
       <TemplateBasic>
-        <Flex>
-          <Box className={"my-4 w-full max-w-4xl bg-white rounded-md border border-gray-100 border-solid md:w-10/12"}>
+        <Flex className="w-full max-w-4xl md:w-10/12">
+          <Box className={"my-4 w-full rounded-md border border-zinc-100 dark:border-zinc-900 border-solid bg-color-card"}>
             {recordMap && (
               <NotionRenderer 
                 fullPage={true}
@@ -39,11 +48,17 @@ const PostPage: NextPage<PostPageProps> = ({
                   code: Code,
                   image: NotionImage,
                   // collectionRow: NotionCollectionRow
-                  collectionRow: CollectionRow
+                  collectionRow: CollectionRow,
+                  
                 }}
               />
             )}
           </Box>
+          <Flex className="px-4 min-h-[400px]">
+            {recordMap && (
+              <UtterancesCommentList/>
+            )}
+          </Flex>
         </Flex>
       </TemplateBasic>
     </>
@@ -83,7 +98,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
     }
   }
 
-  const rootNotionPageId = "067dd719a912471ea9a3ac10710e7fdf"
+  const rootNotionPageId = "067dd719a912471ea9a3ac10710e7fdf" // TODO: change later
   const rootNotionSpaceId = "fde5ac74-eea3-4527-8f00-4482710e1af3"
 
   // This crawls all public pages starting from the given root page in order
@@ -109,4 +124,4 @@ export const getStaticPaths: GetStaticPaths = async () => {
   }
 }
 
-export default PostPage
+export default NotePage
