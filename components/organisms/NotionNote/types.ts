@@ -5,9 +5,9 @@ import {CheckboxProperty, CreatedTimeProperty, DateProperty, LastEditedTimePrope
 
 export type NoteNotionPage = NotionPage & {
   properties: {
-    Name: TitleProperty
+    Title: TitleProperty
     Published: CheckboxProperty
-    Category: SelectProperty<CategoryId>
+    Category: SelectProperty<NoteCategoryId>
     Series: RelationProperty
     "Study Tags": MultiSelectProperty
     "Diary Tags": MultiSelectProperty
@@ -17,7 +17,7 @@ export type NoteNotionPage = NotionPage & {
   }
 }
 
-export enum CategoryId {
+export enum NoteCategoryId {
   STUDY = "7a906eb7-02fa-4d9f-86b1-ae084abb5fea",
   DIARY = "64672a59-35fd-456c-9c6c-b200f94a9d23"
 }

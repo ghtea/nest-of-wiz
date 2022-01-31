@@ -11,7 +11,7 @@
 
 
 .notion-title {
-  @apply font-bold text-3xl my-4 flex flex-row justify-center;
+  @apply font-bold text-3xl my-4 inline-flex flex-row justify-center break-all;
 }
 .notion-page-icon {
   @apply text-4xl flex flex-row justify-center;
@@ -86,7 +86,6 @@
 .notion-page-title {
   @apply max-w-full items-center inline-flex flex-row;
 }
-
 
 .notion-page-title-icon {
   display: flex;

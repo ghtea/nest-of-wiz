@@ -3,6 +3,7 @@ import "styles/index.scss"
 
 import {XStateProvider} from "store/provider"
 import ThemeProvider, {Theme} from "styles/theme"
+import {DayJsProvider} from "utils/dayjs"
 import {QueryProvider} from "utils/react-query"
 // prismsjs resources
 import "prismjs"
@@ -19,7 +20,9 @@ function MyApp({Component, pageProps}: AppProps) {
     <XStateProvider>
       <QueryProvider>
         <ThemeProvider>
-          <Component {...pageProps} />
+          <DayJsProvider>
+            <Component {...pageProps} />
+          </DayJsProvider>
         </ThemeProvider>
       </QueryProvider>
     </XStateProvider>

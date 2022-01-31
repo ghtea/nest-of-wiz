@@ -1,9 +1,13 @@
+import clsx from "clsx"
 import type {NextPage} from "next"
-import {useContext, useEffect, useMemo} from "react"
-import {Flex, Link, Image, Box, Text, Card} from "components/atoms"
-import {NoteCollection} from "components/organisms/NotionNoteCollection"
+import {useContext, useEffect, useMemo, useState} from "react"
+import {Flex, Link, Image, Box, Text, Divider} from "components/atoms"
+import {NoteCategoryId} from "components/organisms/NotionNote/types"
+import {NotionNoteList} from "components/organisms/NotionNoteList"
 import {TemplateBasic} from "components/templates/TemplateBasic"
-const Home: NextPage= () => {
+
+const Home: NextPage = () => {
+  const [categoryId, setCategoryId] = useState<NoteCategoryId | null>(null)
 
   return (
     <TemplateBasic>
@@ -38,25 +42,36 @@ const Home: NextPage= () => {
             </Box>
           </Flex>
         </Box>
-        <Flex className="flex-row justify-center px-8">
-          <Box className="flex-1 h-[1px] bg-neutral-200"/>
-        </Flex>
+        <Divider className="px-8"/>
         <Box className="mt-8">
           <Flex className="flex-row justify-center">
-            <Box className="mx-4"><Text className="text-xl font-bold text-indigo-600 dark:text-indigo-600">All</Text></Box>
-            <Box className="mx-4"><Text className="text-xl font-medium">Study</Text></Box>
-            <Box className="mx-4"><Text className="text-xl font-medium">Diary</Text></Box>
-          </Flex>
-        </Box>
-        <Box className="mt-8">
-          <Flex className="flex-row justify-center">
-            <Box className="mx-4"><Text>all</Text></Box>
-            <Box className="mx-4"><Text>recipe</Text></Box>
-            <Box className="mx-4"><Text>diary</Text></Box>
+            <Box className="mx-4">
+              <Text 
+                onClick={()=>setCategoryId(null)} 
+                className={clsx("text-xl font-medium cursor-pointer", categoryId === null && "text-indigo-600 dark:text-indigo-600")} >
+                All
+              </Text>
+            </Box>
+            <Box className="mx-4">
+              <Text 
+                onClick={()=>setCategoryId(NoteCategoryId.STUDY)} 
+                className={clsx("text-xl font-medium cursor-pointer", categoryId === NoteCategoryId.STUDY && "text-indigo-600 dark:text-indigo-600")} >
+                Study
+              </Text>
+            </Box>
+            <Box className="mx-4">
+              <Text 
+                onClick={()=>setCategoryId(NoteCategoryId.DIARY)} 
+                className={clsx("text-xl font-medium cursor-pointer", categoryId === NoteCategoryId.DIARY && "text-indigo-600 dark:text-indigo-600")} >
+                Diary
+              </Text>
+            </Box>
           </Flex>
         </Box>
         <Box className="mt-4">
-          <NoteCollection/>
+          <NotionNoteList
+            category={categoryId}
+          />
         </Box>
       </Flex>
     </TemplateBasic>
