@@ -7,24 +7,26 @@ export type TextProps = Omit<React.DetailedHTMLProps<React.HTMLAttributes<HTMLSp
   ref?: Ref<HTMLSpanElement>
 }
 
+
+
 export const Text: React.FunctionComponent<TextProps> = memo(forwardRef<HTMLSpanElement, TextProps>(({
-  color = "default",
+  appearance = "default",
   ...rest
 }, ref) => {
-  const colorClassName = useMemo(()=>{
-    if (color === "disabled"){
-      return clsx("text-color-disabled")
-    } else if (color === "hint"){
-      return clsx("text-color-hint")
+  const appearanceClassName = useMemo(()=>{
+    if (appearance === "disabled"){
+      return clsx("text-zinc-300 dark:text-zinc-500")
+    } else if (appearance === "hint"){
+      return clsx("text-zinc-500 dark:text-zinc-400")
     } else {
-      return clsx("text-color-default")
+      return clsx("text-zinc-900 dark:text-zinc-300")
     }
-  },[color])
+  },[appearance])
 
   const className = useMemo(()=>twMerge(
-    clsx(colorClassName, "w-auto"
+    clsx(appearanceClassName, "w-auto"
     ), rest.className
-  ),[rest.className, colorClassName])
+  ),[rest.className, appearanceClassName])
 
   return (
     <span ref={ref} {...rest} className={className}/>

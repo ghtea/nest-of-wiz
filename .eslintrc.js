@@ -22,7 +22,7 @@ module.exports = {
       "callees": ["classnames", "clsx", "ctl"],
       "whitelist": [
         "text-color-default", "text-color-hint", "text-color-disabled",
-        "bg-color-card"
+        "bg-color-card", "border-color-card",
       ]
     }
   }

@@ -21,7 +21,9 @@ module.exports = {
   plugins: [
     // https://tailwindcss.com/docs/functions-and-directives#using-apply-with-per-component-css
     plugin(function ({addComponents, theme}) {
-      addComponents({ // we have to add these classnames to .eslintrc - settings - tailwindcss - whitelist
+      addComponents({ 
+        // don't use in main components files
+        // we have to add these classnames to .eslintrc - settings - tailwindcss - whitelist
         ".text-color-default": {
           color: theme("colors.zinc.900"),
         },
@@ -45,6 +47,12 @@ module.exports = {
         },
         ".dark .bg-color-card": {
           backgroundColor: "#070708" // blending black and zinc-900 a bit 
+        },
+        ".border-color-card": {
+          borderColor: theme("colors.zinc.100"),
+        },
+        ".dark .border-color-card": {
+          borderColor: theme("colors.zinc.900"),
         },
       })
     })

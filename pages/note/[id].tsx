@@ -5,9 +5,8 @@ import {ExtendedRecordMap} from "notion-types"
 import {getPageTitle, getAllPagesInSpace} from "notion-utils"
 
 import {useMemo} from "react"
-import {Code, CollectionRow, NotionRenderer} from "react-notion-x"
-import {Box, Flex, NotionImage} from "components/atoms"
-import {NotionCollectionRow} from "components/molecules/NotionColloectionRow"
+import {Flex} from "components/atoms"
+import {NotionNote} from "components/organisms/NotionNote"
 import {UtterancesCommentList} from "components/organisms/UtterancesCommentList"
 import {TemplateBasic} from "components/templates/TemplateBasic"
 import {isDev} from "utils/environment"
@@ -20,12 +19,12 @@ type NotePageProps = {
 const NotePage: NextPage<NotePageProps> = ({
   recordMap
 }) => {
-  const router = useRouter()
+  // const router = useRouter()
 
-  const pageId = useMemo(()=>{
-    const rawPageId = router.query.id
-    return typeof rawPageId === "string" ? rawPageId : ""
-  }, [router.query.id])
+  // const pageId = useMemo(()=>{
+  //   const rawPageId = router.query.id
+  //   return typeof rawPageId === "string" ? rawPageId : ""
+  // }, [router.query.id])
 
   const pageTitle = useMemo(()=>{
     return recordMap ? getPageTitle(recordMap) : "Not Found"
@@ -38,22 +37,7 @@ const NotePage: NextPage<NotePageProps> = ({
       </Head>
       <TemplateBasic>
         <Flex className="w-full max-w-4xl md:w-10/12">
-          <Box className={"my-4 w-full rounded-md border border-zinc-100 dark:border-zinc-900 border-solid bg-color-card"}>
-            {recordMap && (
-              <NotionRenderer 
-                fullPage={true}
-                recordMap={recordMap}
-                customImages={true}
-                components={{
-                  code: Code,
-                  image: NotionImage,
-                  // collectionRow: NotionCollectionRow
-                  collectionRow: CollectionRow,
-                  
-                }}
-              />
-            )}
-          </Box>
+          <NotionNote recordMap={recordMap}/>
           <Flex className="px-4 min-h-[400px]">
             {recordMap && (
               <UtterancesCommentList/>

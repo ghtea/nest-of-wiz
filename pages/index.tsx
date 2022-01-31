@@ -1,48 +1,63 @@
-import {useSelector} from "@xstate/react"
 import type {NextPage} from "next"
 import {useContext, useEffect, useMemo} from "react"
-import {useQuery} from "react-query"
-import {Flex, Link} from "components/atoms"
+import {Flex, Link, Image, Box, Text, Card} from "components/atoms"
+import {NoteCollection} from "components/organisms/NotionNoteCollection"
 import {TemplateBasic} from "components/templates/TemplateBasic"
-import {XStateContext} from "store/provider"
-import {queryNotionDatabase} from "utils/notion/databases/queryNotionDatabase"
-import {NotionPage} from "utils/notion/types"
-
 const Home: NextPage= () => {
-  const xStateServices = useContext(XStateContext);
-  const themeXState = useSelector(xStateServices.theme, (state)=>state);
-  useEffect(()=>{
-    console.log("themeXState: ", themeXState); // TODO: remove 
-  },[themeXState])
-
-  const databaseResult = useQuery("queryNotionDatabase", async () => queryNotionDatabase({
-    database_id: "897ff39a0fb84c6fb0466c167b4cd958"
-  }))
-  // useEffect(()=>{
-  //   console.log("databaseResult: ", databaseResult); // TODO: remove 
-  // },[databaseResult]) 
-
-  const pages: NotionPage[] = useMemo(()=>{
-    const dataNotionObject = databaseResult.data?.data.object;
-
-    if (dataNotionObject === "list" ){
-      return databaseResult.data?.data.results.filter(item => item.object === "page") as NotionPage[]
-    }
-    else {
-      return []
-    }
-  }, [databaseResult.data?.data.object, databaseResult.data?.data.results])
 
   return (
     <TemplateBasic>
       <Flex>
-        { (pages|| []).map(item => (
-          <Link key={`${item.id}`} href={`/note/${item.id}`}>
-            <Flex className="flex-row">
-              {item.properties["Name"]["title"][0]["plain_text"]} {/* TODO: add types */}
-            </Flex>
-          </Link>
-        ))}
+        <Box className="mt-4">
+          <Flex className="flex-row py-4 px-8">
+            <Box>
+              <Image 
+                className="overflow-hidden rounded-full"
+                alt={"profile of author"} 
+                src={"/images/profile.png"}
+                layout="fixed"
+                width={"100px"}
+                height={"100px"}
+              />
+            </Box>
+            <Box className="ml-4">
+              <Flex className="items-start"> 
+                <Flex className="flex-row items-end">
+                  <Text className="text-2xl font-medium">{"박재현"}</Text>
+                  <Text className="ml-2 text-xl font-light" appearance={"hint"}>{"wiz"}</Text>
+                </Flex>
+                <Flex>
+                  <Text className="font-light" appearance={"hint"}>{"frontend software engineer"}</Text>
+                </Flex>
+              </Flex>
+            </Box>
+            <Box className="ml-8">
+              <Flex className="flex-row">
+                <Link href={"https://github.com/ghtea"}>github</Link>
+              </Flex>
+            </Box>
+          </Flex>
+        </Box>
+        <Flex className="flex-row justify-center px-8">
+          <Box className="flex-1 h-[1px] bg-neutral-200"/>
+        </Flex>
+        <Box className="mt-8">
+          <Flex className="flex-row justify-center">
+            <Box className="mx-4"><Text className="text-xl font-bold text-indigo-600 dark:text-indigo-600">All</Text></Box>
+            <Box className="mx-4"><Text className="text-xl font-medium">Study</Text></Box>
+            <Box className="mx-4"><Text className="text-xl font-medium">Diary</Text></Box>
+          </Flex>
+        </Box>
+        <Box className="mt-8">
+          <Flex className="flex-row justify-center">
+            <Box className="mx-4"><Text>all</Text></Box>
+            <Box className="mx-4"><Text>recipe</Text></Box>
+            <Box className="mx-4"><Text>diary</Text></Box>
+          </Flex>
+        </Box>
+        <Box className="mt-4">
+          <NoteCollection/>
+        </Box>
       </Flex>
     </TemplateBasic>
   )
