@@ -1,0 +1,133 @@
+// styles for NotionRenderer
+.notion {
+  @apply items-start px-8 py-8;
+  * {
+    @apply my-0.5;
+  }
+}
+
+// .notion-header {
+//   @apply hidden;
+// }
+
+
+// .notion-title {
+//   @apply font-bold text-3xl my-4 inline-flex flex-row justify-center break-all;
+// }
+// .notion-page-icon {
+//   @apply text-4xl flex flex-row justify-center;
+// }
+.notion-page-content {
+  @apply items-start w-full;
+}
+
+// collection-row (meta of page)
+.notion-collection-row-property {
+  @apply flex flex-row items-center;
+}
+
+.notion-collection-column-title {
+  @apply w-20;
+  svg {
+    @apply hidden;
+  }
+}
+
+// column name
+// .notion-collection-column-title-body {
+//   @apply text-color-hint;
+// }
+
+// .notion-property-multi_select-item {
+//   &:nth-of-type(n+2) {
+//     @apply ml-2;
+//   }
+// }
+
+// .notion-page-content-inner {
+//   @apply items-start;
+// }
+
+// heading
+.notion-h {
+  svg {
+    @apply hidden;
+  }
+}
+.notion-h1 {
+  @apply text-3xl my-3 font-bold;
+}
+.notion-h2 {
+  @apply text-2xl my-2 font-bold;
+}
+.notion-h3 {
+  @apply text-xl my-1 font-medium;
+}
+
+// list
+.notion-list {
+  @apply flex flex-col items-start ml-2;
+}
+
+.notion-list-disc {
+  list-style-type: disc;
+  & > * {
+    @apply ml-3;
+  }
+}
+
+.notion-list-numbered {
+  list-style-type: decimal;
+  & > * {
+    @apply ml-3;
+  }
+}
+
+// page text
+.notion-page-title {
+  @apply max-w-full items-center inline-flex flex-row;
+}
+
+.notion-page-title-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 22px;
+  width: 22px;
+  border-radius: 3px;
+  flex-shrink: 0;
+  margin-left: 2px;
+  margin-right: 6px;
+}
+
+
+// callout
+.notion-callout {
+  @apply w-full flex flex-row items-start p-4 bg-zinc-100 dark:bg-zinc-900 rounded m-2;
+}
+.notion-callout-text {
+  @apply ml-4 p-2;
+}
+
+// toggle
+.notion-toggle {
+  summary {
+    @apply cursor-pointer;
+  }
+  & > div {
+    @apply ml-4 my-2;
+  }
+}
+
+.notion-hr {
+  @apply my-3;
+}
+
+// link
+.notion-link {
+  transition: border-color 100ms ease-in;
+  @apply break-all text-color-hint border-b border-solid border-zinc-700 dark:border-zinc-400;
+  &:hover {
+    @apply text-color-default border-zinc-900 dark:border-zinc-200;
+  }
+}

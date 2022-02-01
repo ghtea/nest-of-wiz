@@ -5,6 +5,5 @@
 - Next.js
 - TypeScript
 - TailwindCss
-- xstate
-- atomic design
 - React Query
+- atomic design
