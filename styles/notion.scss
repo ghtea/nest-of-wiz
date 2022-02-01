@@ -1,21 +1,22 @@
+// styles for NotionRenderer
 .notion {
-  @apply px-8 py-8;
+  @apply items-start px-8 py-8;
   * {
     @apply my-0.5;
   }
 }
 
-.notion-header {
-  @apply hidden;
-}
+// .notion-header {
+//   @apply hidden;
+// }
 
 
-.notion-title {
-  @apply font-bold text-3xl my-4 inline-flex flex-row justify-center break-all;
-}
-.notion-page-icon {
-  @apply text-4xl flex flex-row justify-center;
-}
+// .notion-title {
+//   @apply font-bold text-3xl my-4 inline-flex flex-row justify-center break-all;
+// }
+// .notion-page-icon {
+//   @apply text-4xl flex flex-row justify-center;
+// }
 .notion-page-content {
   @apply items-start w-full;
 }
@@ -33,19 +34,19 @@
 }
 
 // column name
-.notion-collection-column-title-body {
-  @apply text-color-hint;
-}
+// .notion-collection-column-title-body {
+//   @apply text-color-hint;
+// }
 
-.notion-property-multi_select-item {
-  &:nth-of-type(n+2) {
-    @apply ml-2;
-  }
-}
+// .notion-property-multi_select-item {
+//   &:nth-of-type(n+2) {
+//     @apply ml-2;
+//   }
+// }
 
-.notion-page-content-inner {
-  @apply items-start;
-}
+// .notion-page-content-inner {
+//   @apply items-start;
+// }
 
 // heading
 .notion-h {

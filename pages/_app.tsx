@@ -2,7 +2,7 @@ import type {AppProps} from "next/app"
 import "styles/index.scss"
 
 import {XStateProvider} from "store/provider"
-import ThemeProvider, {Theme} from "styles/theme"
+import {ThemeProvider} from "styles/theme"
 import {DayJsProvider} from "utils/dayjs"
 import {QueryProvider} from "utils/react-query"
 // prismsjs resources

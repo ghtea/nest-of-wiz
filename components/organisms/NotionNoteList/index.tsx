@@ -1,7 +1,7 @@
 import {useCallback, useEffect, useMemo} from "react";
 import {useQuery} from "react-query";
 import {NoteCategoryId, NoteNotionPage} from "../NotionNote/types";
-import {Box, Card, Divider, Flex, Link, Text} from "components/atoms";
+import {Box, Card, Divider, Flex, Icon, Link, Text} from "components/atoms";
 import {NotionNoteListItem} from "components/molecules/NotionNoteListItem";
 import {queryNotionDatabase} from "utils/notion";
 
@@ -32,7 +32,6 @@ export const NotionNoteList: React.FunctionComponent<NotionNoteListProps> = ({
       ]
     } as any; // types in package seems wrong
 
-    console.log("filter: ", filter); // TODO: remove
     return queryNotionDatabase({
       database_id: "897ff39a0fb84c6fb0466c167b4cd958",
       filter,
@@ -62,16 +61,25 @@ export const NotionNoteList: React.FunctionComponent<NotionNoteListProps> = ({
       <Flex>
 
       </Flex>
-      <Box className="mx-4">
-        <Card>
-          {pages.map(item => (
-            <Flex key={`item-${item.id}`} className="mt-2 first:mt-0">
-              <NotionNoteListItem data={item}/>
-              <Divider className=""/>
-            </Flex>
-          ))}
-        </Card>
-      </Box>
+      <Flex>
+        {databaseResult.isLoading && (
+          <Flex className="justify-center h-40">
+            <Card className="justify-center w-20 h-20">
+              <Icon name="Sync"/>
+            </Card>
+          </Flex>
+        )}
+        {!databaseResult.isLoading && (
+          <Card className="w-full rounded-lg">
+            {pages.map((item, index) => (
+              <Flex key={`item-${item.id}`} className="mt-2 first:mt-0">
+                <NotionNoteListItem data={item}/>
+                {pages.length - 1 > index && (<Divider/>) }
+              </Flex>
+            ))}
+          </Card>
+        )}
+      </Flex>
     </Flex>
   )
 }

@@ -7,17 +7,22 @@ import {getPageTitle, getAllPagesInSpace} from "notion-utils"
 import {useMemo} from "react"
 import {Flex} from "components/atoms"
 import {NotionNote} from "components/organisms/NotionNote"
+import {NoteNotionPage} from "components/organisms/NotionNote/types"
 import {UtterancesCommentList} from "components/organisms/UtterancesCommentList"
 import {TemplateBasic} from "components/templates/TemplateBasic"
 import {isDev} from "utils/environment"
+import {notion} from "utils/notion"
 import {notionXClient} from "utils/notion-x"
+import {NotionPage} from "utils/notion/types"
 
 type NotePageProps = {
   recordMap?: ExtendedRecordMap
+  page?: NotionPage
 }
 
 const NotePage: NextPage<NotePageProps> = ({
-  recordMap
+  recordMap,
+  page,
 }) => {
   // const router = useRouter()
 
@@ -27,7 +32,7 @@ const NotePage: NextPage<NotePageProps> = ({
   // }, [router.query.id])
 
   const pageTitle = useMemo(()=>{
-    return recordMap ? getPageTitle(recordMap) : "Not Found"
+    return recordMap ? getPageTitle(recordMap) : "Note"
   },[recordMap])
 
   return (
@@ -37,7 +42,7 @@ const NotePage: NextPage<NotePageProps> = ({
       </Head>
       <TemplateBasic>
         <Flex className="w-full max-w-4xl md:w-10/12">
-          <NotionNote recordMap={recordMap}/>
+          <NotionNote recordMap={recordMap} page={page as NoteNotionPage}/>
           <Flex className="px-4 min-h-[400px]">
             {recordMap && (
               <UtterancesCommentList/>
@@ -55,10 +60,12 @@ export const getStaticProps: GetStaticProps = async (context) => {
     if (typeof id !== "string") throw Error("type of id is not string")
 
     const recordMap = await notionXClient.getPage(id)
+    const pageData = await notion.pages.retrieve({page_id: id})
   
     return {
       props: {
-        recordMap
+        recordMap,
+        page: pageData as NotionPage
       },
       revalidate: 10
     }
@@ -68,7 +75,8 @@ export const getStaticProps: GetStaticProps = async (context) => {
 
     return {
       props: {
-        recordMap: undefined
+        recordMap: undefined,
+        page: undefined
       },
     }
   }

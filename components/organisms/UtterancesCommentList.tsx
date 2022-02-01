@@ -1,6 +1,6 @@
 import {memo, Ref, useCallback, useEffect, useRef} from "react"
 import {Box, Flex} from "components/atoms"
-import {Theme, useThemeContext} from "styles/theme"
+import {ThemeName, useThemeContext} from "styles/theme"
 
 export type UtterancesCommentListProps = {
 }
@@ -17,7 +17,7 @@ export const UtterancesCommentList: React.FunctionComponent<UtterancesCommentLis
     script.src = "https://utteranc.es/client.js";
     script.setAttribute("issue-term", "pathname");
     script.setAttribute("repo", "ghtea/nest-of-wiz-comments");
-    script.setAttribute("theme", theme.name === Theme.LIGHT ? "github-light" : "github-dark");
+    script.setAttribute("theme", theme.name === ThemeName.LIGHT ? "github-light" : "github-dark");
     script.crossOrigin = "anonymous";
     script.async = true;
 

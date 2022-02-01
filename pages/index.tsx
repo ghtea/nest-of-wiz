@@ -1,7 +1,7 @@
 import clsx from "clsx"
 import type {NextPage} from "next"
-import {useContext, useEffect, useMemo, useState} from "react"
-import {Flex, Link, Image, Box, Text, Divider} from "components/atoms"
+import {useState} from "react"
+import {Flex, Link, Image, Box, Text, Divider, Icon} from "components/atoms"
 import {NoteCategoryId} from "components/organisms/NotionNote/types"
 import {NotionNoteList} from "components/organisms/NotionNoteList"
 import {TemplateBasic} from "components/templates/TemplateBasic"
@@ -22,6 +22,7 @@ const Home: NextPage = () => {
                 layout="fixed"
                 width={"100px"}
                 height={"100px"}
+                priority={true}
               />
             </Box>
             <Box className="ml-4">
@@ -37,7 +38,9 @@ const Home: NextPage = () => {
             </Box>
             <Box className="ml-8">
               <Flex className="flex-row">
-                <Link href={"https://github.com/ghtea"}>github</Link>
+                <Link href={"https://github.com/ghtea"}>
+                  <Icon name={"Github"} size={24} className="cursor-pointer"/>
+                </Link>
               </Flex>
             </Box>
           </Flex>
@@ -68,11 +71,11 @@ const Home: NextPage = () => {
             </Box>
           </Flex>
         </Box>
-        <Box className="mt-4">
+        <Flex className="px-4 my-4">
           <NotionNoteList
             category={categoryId}
           />
-        </Box>
+        </Flex>
       </Flex>
     </TemplateBasic>
   )

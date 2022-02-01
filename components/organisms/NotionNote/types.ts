@@ -2,7 +2,6 @@
 
 import {CheckboxProperty, CreatedTimeProperty, DateProperty, LastEditedTimeProperty, MultiSelectProperty, NotionPage, RelationProperty, SelectProperty, TitleProperty} from "utils/notion/types";
 
-
 export type NoteNotionPage = NotionPage & {
   properties: {
     Title: TitleProperty

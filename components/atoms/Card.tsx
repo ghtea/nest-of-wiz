@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import React, {forwardRef, memo, Ref, RefObject, useMemo} from "react"
+import React, {forwardRef, memo, Ref, useMemo} from "react"
 import {twMerge} from "tailwind-merge"
 
 export type CardProps = Omit<React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>, "ref"> & {

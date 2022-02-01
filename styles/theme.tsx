@@ -1,5 +1,3 @@
-
-
 import React, {
   createContext,
   FunctionComponent,
@@ -10,7 +8,14 @@ import React, {
   useMemo,
   useState,
 } from "react";
+import resolveConfig from "tailwindcss/resolveConfig"
+import {TailwindConfig} from "tailwindcss/tailwind-config";
+import rawTailwindConfig from "tailwind.config.js"
 import {getLocalStorage, removeLocalStorage, setLocalStorage} from "utils/others/localStorage";
+
+// https://tailwindcss.com/docs/configuration#referencing-in-java-script
+export const tailwindConfig = resolveConfig(rawTailwindConfig as TailwindConfig)
+export const tailwindTheme = resolveConfig(rawTailwindConfig as TailwindConfig).theme
 
 export enum ThemeSetting {
   FIXED_LIGHT = "fixed-light",
@@ -18,19 +23,19 @@ export enum ThemeSetting {
   AUTO = "auto"
 }
 
-export enum Theme {
+export enum ThemeName {
   LIGHT = "light",
   DARK = "dark",
 }
 
 export type ThemeContext = {
-  name:  Theme
+  name:  ThemeName
   setting: ThemeSetting
   setSetting: React.Dispatch<React.SetStateAction<ThemeSetting>>
 };
 
 export const ThemeContext = createContext<ThemeContext>({
-  name: Theme.LIGHT,
+  name: ThemeName.LIGHT,
   setting: ThemeSetting.AUTO,
   setSetting: (value: SetStateAction<ThemeSetting>) => {}
 });
@@ -39,20 +44,20 @@ export const useThemeContext = () => {
   return useContext(ThemeContext);
 };
 
-const ThemeProvider: FunctionComponent = (props) => {
+export const ThemeProvider: FunctionComponent = (props) => {
   
   const [themeSetting, setThemeSetting] = useState<ThemeSetting>(ThemeSetting.AUTO);
   const [isBrowserDarkMode, setIsBrowserDarkMode] = useState(false)
 
   const theme = useMemo(()=>{
     if (themeSetting === ThemeSetting.FIXED_LIGHT){
-      return Theme.LIGHT
+      return ThemeName.LIGHT
     }
     else if (themeSetting === ThemeSetting.FIXED_DARK){
-      return Theme.DARK
+      return ThemeName.DARK
     }
     else {
-      return isBrowserDarkMode ? Theme.DARK  : Theme.LIGHT
+      return isBrowserDarkMode ? ThemeName.DARK  : ThemeName.LIGHT
     }
   },[isBrowserDarkMode, themeSetting])
 
@@ -94,7 +99,7 @@ const ThemeProvider: FunctionComponent = (props) => {
 
   // add/remove dark class for tailwindcss
   useEffect(()=>{
-    if (theme === Theme.LIGHT){
+    if (theme === ThemeName.LIGHT){
       document.documentElement.classList.remove("dark")
     } else {
       document.documentElement.classList.add("dark")
@@ -125,5 +130,3 @@ const ThemeProvider: FunctionComponent = (props) => {
     </ThemeContext.Provider>
   );
 };
-
-export default ThemeProvider;
