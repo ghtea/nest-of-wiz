@@ -90,25 +90,25 @@ export const getStaticPaths: GetStaticPaths = async () => {
     }
   }
 
-  const rootNotionPageId = "067dd719a912471ea9a3ac10710e7fdf" // TODO: change later
-  const rootNotionSpaceId = "fde5ac74-eea3-4527-8f00-4482710e1af3"
+  // dont use it yet
+  const rootNotionPageId = "897ff39a0fb84c6fb0466c167b4cd958" // TODO: change later
 
   // This crawls all public pages starting from the given root page in order
   // for next.js to pre-generate all pages via static site generation (SSG).
   // This is a useful optimization but not necessary; you could just as easily
   // set paths to an empty array to not pre-generate any pages at build time.
-  const pages = await getAllPagesInSpace(
-    rootNotionPageId,
-    rootNotionSpaceId,
-    notionXClient.getPage.bind(notionXClient),
-    {
-      traverseCollections: false
-    }
-  )
+  // const pages = await getAllPagesInSpace(
+  //   rootNotionPageId,
+  //   undefined,
+  //   notionXClient.getPage.bind(notionXClient),
+  //   {
+  //     traverseCollections: false
+  //   }
+  // )
 
-  console.log(`getStaticPaths pages: ${pages}`)
+  const pages: string[] = [];
 
-  const paths = Object.keys(pages).map((pageId) => `/${pageId}`)
+  const paths = Object.keys(pages).map((pageId) => `/note/${pageId}`)
 
   return {
     paths,

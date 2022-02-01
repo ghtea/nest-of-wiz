@@ -51,8 +51,8 @@ export const NotionNote: React.FunctionComponent<NotionNoteProps> = ({
           customImages={true}
           components={{
             code: Code,
-            image: NotionImage,
-            // collectionRow: CollectionRow,
+            // image: NotionImage,
+            collectionRow: ()=>null,
           }}
         />
       )}
