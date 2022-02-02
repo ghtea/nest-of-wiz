@@ -8,8 +8,7 @@ export type NoteNotionPage = NotionPage & {
     Published: CheckboxProperty
     Category: SelectProperty<NoteCategoryId>
     Series: RelationProperty
-    "Study Tags": MultiSelectProperty
-    "Diary Tags": MultiSelectProperty
+    Tags: MultiSelectProperty
     Date: DateProperty
     Updated: LastEditedTimeProperty
     Created: CreatedTimeProperty

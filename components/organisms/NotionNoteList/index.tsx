@@ -25,8 +25,8 @@ export const NotionNoteList: React.FunctionComponent<NotionNoteListProps> = ({
         {
           property: "Category",
           select: category === NoteCategoryId.STUDY 
-            ? {equals: "Study"} : category === NoteCategoryId.DIARY 
-              ? {equals: "Diary"} 
+            ? {equals: "STUDY"} : category === NoteCategoryId.DIARY 
+              ? {equals: "DIARY"} 
               : {is_not_empty: true} 
         }
       ]

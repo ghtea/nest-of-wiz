@@ -19,10 +19,7 @@ export const NotionNoteListItem: React.FunctionComponent<NotionNoteListItemProps
     return dayJs(data.properties.Updated.last_edited_time).format("LLL")
   }, [data.properties.Updated.last_edited_time, dayJs])
   const tags = useMemo(()=>{
-    return [
-      ...(data.properties["Study Tags"].multi_select || []), 
-      ...(data.properties["Diary Tags"].multi_select || [])
-    ]
+    return [...(data.properties["Tags"].multi_select || [])]
   },[data.properties])
 
   const onClick = useCallback(()=>{

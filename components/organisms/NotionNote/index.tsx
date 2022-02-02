@@ -22,10 +22,7 @@ export const NotionNote: React.FunctionComponent<NotionNoteProps> = ({
     return dayJs(page?.properties.Updated.last_edited_time).format("LLL")
   }, [page?.properties.Updated.last_edited_time, dayJs])
   const tags = useMemo(()=>{
-    return [
-      ...(page?.properties["Study Tags"].multi_select || []), 
-      ...(page?.properties["Diary Tags"].multi_select || [])
-    ]
+    return [...(page?.properties["Tags"].multi_select || [])]
   },[page?.properties])
   
   return (
